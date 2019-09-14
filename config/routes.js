@@ -15,5 +15,6 @@ routes.delete('/roles/:id', RoleController.destroy);
 // USER
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
+routes.post('/users', UserController.store);
 
 module.exports = routes;
