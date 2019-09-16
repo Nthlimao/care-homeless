@@ -7,7 +7,7 @@ const RoleSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-    }
+    },
 });
 
 

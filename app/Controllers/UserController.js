@@ -12,8 +12,20 @@ module.exports = {
         return res.json(user);
     },
     async store(req, res) {
-        const user = await User.create(req.body);
+        const { email } = req.body;
 
-        return res.json(user);
+        if (await User.findOne({ email })) {
+            return res.status(400).send({ error: 'User already exists' });
+        }
+
+        try {
+            const user = await User.create(req.body);
+            user.password = undefined;
+
+            return res.json(user);
+            
+        } catch (err) {
+            return res.status(400).send({ error: err.message });
+        }
     },
 }
