@@ -5,6 +5,8 @@ const web = require('./web');
 const express = require('express');
 const router = express.Router();
 
+router.use(auth);
+
 function resource (method, url, controller, call = null) {
     const Controller = require(`../app/Controllers/${controller}`);
 
@@ -54,5 +56,6 @@ routes.forEach(e => {
     
     resource(method, url, controller, call);
 });
+
 
 module.exports = router;
